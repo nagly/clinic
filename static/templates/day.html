@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="margin-left:25px;">
+    
+
+{% if reserved >= 1 %}
+<h2>Już zarejestrowałeś wizytę w tym dniu.</h2>
+{% else %}
+    <h2>W tym dniu przyjmuje <b>doktor {{doctor.doctor}}</b></h2>
+    <h2>Dostępne godziny</h2>
+    {% for hour in hours %}
+    {% if hour.patient == None %}
+    <div style="border:1px solid #000; width:100px; height:65px; float:left;margin-right:25px;margin-top:5px; font-size:25px; padding:5px;cursor:default !important;" class="btn btn-success">
+    <span>{{hour.hour}}</span><br><br>
+    <p><a href="/calendar/add/{{hour.id}}"><input type="submit" value="Zapisz się" class="btn btn-default"/></a></p>
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if patient == None %}
+<div style="margin-left:25px;">
+<h2>Twoja karta pacjenta</h2><br>
+
+<form method="POST" action=""> {% csrf_token %}
+{{ forma_pacjenta.as_p }}
+<input type='submit' value='Załóż kartę' class="btn btn-default" />
+</form>
+</div>
+{% else %}
+<div style="margin-left:25px;">
+	<h2>{{patient}}, Twoja karta pacjenta została już założona.</h2>
+</div>
+{% endif %}
+
+{% endblock %}

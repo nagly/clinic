@@ -1,0 +1,7 @@
+1. W aplikacji (np w patients) tworzymy plik forms.py
+2. W nim importujemy 'forms' z django i tworzymy nasza forme, ktora bedzie powiazana z modelem
+3. Jesli mamy model Patient to forma, ktora bedzie wykorzystana do rejestracji tego pacjenta bedzie nosic nazwe PatientForm (tak jak w moim przykladzie)
+4. PatientForm tworzy sie prawie tak samo jak model Patient, tylko ze zamiast dziedziczyc po 'models.Model', to forma dziedziczy po 'forms.ModelForm'.
+5. Pola w formie tez robi sie analogicznie. Zamiast models.CHarfield --> forms.CharField.
+6. Jak juz stworzymy forme to przechodzimy do widoku (views.py), tam importujemy z 'forms' nasza forme, czyli PatientForm
+7. W funkcji home definiujemy zmienna form ktora przypisana jest do obiektu formy pacjenta (maslo maslane troche) i na koniec uzupelniamy 'context'

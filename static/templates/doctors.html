@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="margin-left:25px;">
+    
+<article>
+
+    {% for doctor in doctors %}
+    <h1><i></i>Doktor {{doctor.first_name}} {{doctor.last_name}}</h1>
+    <p>Informacje:</p>
+    <p>Numer PWZ (Prawa Wykonywania Zawodu): {{doctor.pwz}}</p>
+    <p>Specjalizacja: {{doctor.specialization}}</p>
+    <p>Rok ukończenia studiów: {{doctor.since}}</p>
+    <p>O mnie:</p>
+    <p>{{doctor.about}}</p>
+    
+    {% endfor %}
+</article>
+</div>
+{% endblock %}

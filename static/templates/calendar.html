@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--
+    <h2>Hours</h2>
+    {% for hour in hours %}
+    {% if hour.patient == None %} <- dzięki temu wypiszemy tylko godziny wolne :D widac, że wszedzie pacjent to None 
+    <p>Godzina: {{hour.hour}}</p>
+    <p>Dzień: {{hour.date}}</p>
+    <p>Doktor: {{hour.current_doctor}}</p>
+    <p>Pacjent: {{hour.patient}}</p>
+    <p><a href="/calendar/get/{{hour.id}}"><input type="submit" value="Szczegóły" /></a></p>
+    <p><a href="/calendar/add/{{hour.id}}"><input type="submit" value="Zapisz się" /></a></p>
+    <p>-------------------------</p>
+    {% endif %}
+    {% endfor %}
+-->
+
+    {% if messages %}
+    {% for message in messages %}
+    <div style="margin-left:25px;">
+    <p{% if message.tags == "success" %} class="alert alert-success"{% endif %}>{{message}}</p>
+    </div>
+    <div class="clearfix"></div>
+    {% endfor %}
+    {% endif %}
+
+    {% for month in months %}
+    <div style="margin-left:25px;">
+    {% if month.month = 1 %}<h3>Styczeń</h3>{% endif %}
+    {% if month.month = 2 %}<h3>Luty</h3>{% endif %}
+    {% if month.month = 3 %}<h3>Marzec</h3>{% endif %}
+    {% if month.month = 4 %}<h3>Kwiecień</h3>{% endif %}
+    {% if month.month = 5 %}<h3>Maj</h3>{% endif %}
+    {% if month.month = 6 %}<h3>Czerwiec</h3>{% endif %}
+    {% if month.month = 7 %}<h3>Lipiec</h3>{% endif %}
+    {% if month.month = 8 %}<h3>Sierpień</h3>{% endif %}
+    {% if month.month = 9 %}<h3>Wrzesień</h3>{% endif %}
+    {% if month.month = 10 %}<h3>Październik</h3>{% endif %}
+    {% if month.month = 11 %}<h3>Listopad</h3>{% endif %}
+    {% if month.month = 12 %}<h3>Grudzień</h3>{% endif %}
+    </div>
+    
+
+        {% for date in dates %}
+        <div style="margin-left:25px;">
+        {% if date.date.month == month.month %}
+        <a href="/calendar/day/{{date.id}}"><div style="border:1px solid #000; width:60px; height:60px; float:left;margin-right:25px;margin-top:5px; font-size:25px; padding:5px;" class="btn btn-info">{{date.date.day}} <br><br><span>{{date.date|date:"D" }}</span></div></a>
+        {% endif %}
+        </div>
+        {% endfor %}
+        <div class="clearfix"></div>
+    <br><br><br><br>
+    {% endfor %}
+    
+    
+    
+{% endblock %}

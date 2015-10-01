@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style="margin-left:25px;">
+    <h2>Historia pacjenta</h2><br>
+    
+    {% if history_count = 0 %}<p>Nie posiadasz jeszcze żadnej historii leczenia (na szczęście)</p>{% endif %}
+
+    {% for i in history %}
+    <article>
+    <p><b>{{i.date}}</b></p>
+    <p>{{i.text}}</p>
+    </article>
+    {% endfor %}
+    </div>
+{% endblock %}

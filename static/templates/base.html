@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Przychodnia LiK</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="viewport" content="width=320, initial-scale=0.75, minimum-scale=0.75, maximum-scale=1.0">
+        <link rel="icon" type="image/png" href="/static/img/favicon.png" />
+        <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="/static/css/main.css" rel="stylesheet" type="text/css" />
+        
+        
+        <script type="text/javascript" src='/static/js/jquery-1.8.2.min.js'></script>
+        <!--[if lt IE 9]>
+            <link href="/static/css/ie8.css" rel="stylesheet" type="text/css" />
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+          <![endif]-->
+        <script type="text/javascript" src='/static/js/bootstrap.js'></script>
+        <script type="text/javascript" src='/static/js/jquery.placeholder.min.js'></script>
+        <script type="text/javascript" src='/static/js/main.js'></script>
+        <script type="text/javascript" src='/static/js/jquery.mobilemenu.js'></script>
+    </head>
+    <body>
+        <header>
+            <section class="row center">
+                <section class="span25">
+                    <section class="left pull-left span6">
+                        <figure id="logo">
+                            <a href="/" title="Illumine - Home page">
+                                <img src="/static/img/logo2.png" alt="" />
+                            </a>
+                        </figure>
+                    </section>
+                    <section class="right pull-right span18">
+                      <section class="info pull-right">
+                          <ul>
+                                {% if not user.is_authenticated %}
+                                <li><a href="/login/" title="Logowanie"><span class="left"></span><span class="middle">Logowanie</span><span class="right"></span></a></li>
+                                
+                                <li><a href="/register/" title="Rejestracja"><span class="left"></span><span class="middle">Rejestracja</span><span class="right"></span></a></li>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <li><span class="left"></span><span class="middle">Witaj {{user.username}}</span><span class="right"></span></li>
+                                {% endif %}
+                            </ul>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </header>
+        <nav id="mainNav">
+            <section class="row center">
+                <section class="span25">
+                    <ul class="pull-left span19 hidden-phone">
+                        <li class="active"><a href="/" title="Start">Start</a></li>
+                        <li><a href="/doctors/" title="Lekarze">Lekarze</a></li>
+                        <li><a href="/articles/all/" title="Aktualności">Aktualności</a></li>
+                        <li><a href="#" title="Kontakt" class="disabled">Kontakt</a></li>
+                     </ul>
+                     {% if user.is_authenticated %}
+                     <ul class="pull-right span4">
+                        <li>
+                            <a href="#" title="Profil">Profil</a>
+                            <div class="dropdown">
+                                <ul>
+                                    <li><a href="/users/{{user.id}}/" title="">Strona profilu</a></li>
+                                    <li><a href="/calendar/all" title="">Zarejestruj wizytę</a></li>
+                                    <li><a href="/users/{{user.id}}/history" title="">Historia leczenia</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="/logout/" title="Wyloguj">Wyloguj</a></li>
+                    </ul>
+                    {% endif %}
+                </section>
+            </section>
+        </nav>
+        <section id="slider" class="static">
+            
+            <img src="/static/img/sliderImage1.jpg" alt="" style="">
+            
+        </section>
+        <section id="main" class="normalPage">
+            <section class="row center">
+                <section class="span25 main-wrapper">
+                    <div class="title span9">
+                <h1 class="span8">Nazwa Kliniki</h1>
+                <h2 class="span8">Hasło / motto kliniki</h2>
+            </div>
+                    <div class="cornerShadow left"></div>
+                    <div class="cornerShadow right"></div>
+                    <section class="content span16">
+                        
+                        <div class="twoCol row collumn">
+                            
+                            
+                            {% block content %}{% endblock %}
+                        </div>
+                        
+                        
+                        
+                    </section>
+                    <aside class="span8">
+                        
+                        <section class="largeBox">
+                            <h1 class="pull-left"><b>Nasi specjaliści:</b></h1><br />
+                            <section class="span8 figureArticle">
+                                <article>
+                                    <figure>
+                                        <img src="/static/img/doctorSample.png" alt="" />
+                                        <div class="overlay"></div>
+                                    </figure>
+                                    <div class="info">
+                                        <h5>Doktor Natalia Kuźmierska</h5>
+                                        <span>Kilka słów od doktora</span>                                        
+                                    </div>
+                                    <span><a href="/doctors/" title="Read more" class="customButton smallRadius btn-block">Dowiedz się więcej na temat lekarza</a></span>
+                                </article>
+                                <div class="hr"></div>
+                                <article>
+                                    <figure>
+                                        <img src="/static/img/doctorSample.png" alt="" />
+                                        <div class="overlay"></div>
+                                    </figure>
+                                    <div class="info">
+                                        <h5>Doktor Joanna Świątek</h5>
+                                        <span>Kilka słów od doktora</span>                                        
+                                    </div>
+                                    <span><a href="/doctors/" title="Read more" class="customButton smallRadius btn-block">Dowiedz się więcej na temat lekarza</a></span>
+                                </article>
+                            </section>
+                            
+                        </section>
+                        
+                        <section class="span8 asideBox">
+                            <div class="inside span8">
+                                <figure class="under">
+                                    <div class="underFlow"></div>
+                                    <img src="/static/img/doctorSample.png" alt="" />
+                                </figure>
+                                <div class="info under">
+                                    <p>Szukasz profesjonalnej opieki lekarskiej?</p><p>Zarejestruj się!</p>
+                                    <a href="/register/" class="customButton">Rejestracja</a>
+                                </div>
+                            </div>
+                        </section>
+                    </aside>
+                    
+                </section>
+            </section>
+        </section>
+        <footer>
+            <section class="row center">
+                <section class="span25">
+                        <section class="top noDivider" style="color:#E0E0E0;">
+                            <h2 class="pull-left">Mapa dojazdu do naszej przychodni.</h2>
+                            <p class="pull-left">Przychodznia mieści się na ulicy Bacciarellego we Wrocławiu na osiedlu Biskupin. Łatwo do nas dojechać komunikacją miejską. Tramwaje: 1, 2, 4, 10. Autobusy: 146.</p>
+                        </section>
+                        <div class="mapHolder">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2505.2783853399246!2d17.11411739999999!3d51.1033237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470fe800e22b1073%3A0xf74f53cb0769f6f2!2sMarcelego+Bacciarellego+49%2C+Wroc%C5%82aw!5e0!3m2!1spl!2spl!4v1415976019284" width="100%" height="100%" frameborder="0" style="border:0"></iframe>
+                        </div>
+                </section>
+            </section>
+        </footer>
+        <section id="copyright">
+            <section class="row center">
+                <section class="span25">
+                    <p>COPYRIGHT © 2014 Piotr Nagły</p>
+                </section>
+            </section>
+        </section>
+        <script>
+            if(document.body.offsetWidth < 400) {
+                viewport = document.querySelector("meta[name=viewport]");
+                viewport.setAttribute('content', 'width=device-width; minimum-scale=0.75, initial-scale=0.75; maximum-scale=0.75; user-scalable=0;');
+            }
+        </script>
+    </body>
+</html>

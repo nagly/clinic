@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="span16">
+
+    {% if messages %}
+    {% for message in messages %}
+    <div style="margin-left:25px;">
+    <p{% if message.tags == "success" %} class="alert alert-success"{% endif %}>{{message}}</p>
+    </div>
+    <div class="clearfix"></div>
+    {% endfor %}
+    {% endif %}
+
+    <article>
+        <h1><i></i>Witamy na stronie Twojego profilu {{user.username}}!</h1>
+        {% if patient = None %}
+        <p>Jesteś nowym użytkownikiem. Aby umożliwić Ci rejestracje wizyt i śledzenie historii swojego leczenia musisz uzupełnić swój profil zakładając <b><a href="/users/{{user.id}}/medical_card/">kartę pacjenta.</a></b></p>
+        {% else %}
+        <br>
+        <p>Imię: {{patient.first_name}}</p>
+        <p>Nazwisko: {{patient.last_name}}</p>
+        <p>Pesel: {{patient.pesel}}</p>
+        <p>Data urodzenia: {{patient.birth}}</p>
+        <p>Ulica: {{patient.street}}</p>
+        <p>Numer domu (lokalu): {{patient.house_no}}</p>
+        <p>Nazwa użytkownika: {{patient.patient_username}}</p>
+        <p>Email: {{patient.patient_email}}</p>
+        <b><a href="/users/{{user.id}}/medical_card/">karta pacjenta</a></b>
+        {% endif %}
+    </article>
+    <article>
+        <h1><i></i>Zarejestowane wizyty lekarskie:</h1>
+        {% for i in reserved %}
+        {% for date in dates %}
+        {% if date.id = i.date_id %}
+        <br>
+        <article>
+        <p>godzina: {{i.hour}}</p>
+        <p>data: {{date.date}}</p>
+        <p>lekarz: {{i.current_doctor}}</p>
+        <p><a href="/calendar/{{i.id}}/signout/"><input type="submit" value="Wypisz się" class="btn btn-default"/></a></p>
+        </article>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </article>
+</div>
+
+
+
+
+{% endblock %}
